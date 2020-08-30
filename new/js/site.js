@@ -126,7 +126,7 @@ let questions = [
   let cquestion=0;
   let wquestion=0;
   // let arr=[1,2,3,4,5,6,7,8,9,10];
-  // questions=questions.sort(() => Math.random()-0.5);
+  questions=questions.sort(() => Math.random()-0.5);
   // let i=0;
   // arr=shuffle(arr);
   window.onload = function() {
@@ -137,33 +137,13 @@ let questions = [
   
   function next() {
    
-       
-    // cons shuffledq ,currentq;
-    // if the question is last then redirect to final page
     if (question_count == questions.length - 1) {
-      // sessionStorage.setItem("time", time);
-      // clearInterval(mytime);
+      sessionStorage.setItem("time", time);
+      clearInterval(mytime);
       location.href = "end.html";
     }
-    console.log(question_count);
-  
-    // let user_answer = document.querySelector("li.option.active").innerHTML;
-    //  var element=document.querySelector("li.option.active");
-    // check if the answer is right or wrong
-    // if (user_answer == questions[question_count].answer) {
-      // points += 10;
-      // alert("correct answer");
-    //   document.getElementById("option.active").style.backgroundColor="green";
-    //   document.getElementsById("wrapper").style.backgroundColor="green";
-    //  element.classList.toggle("active");
-      // sessionStorage.setItem("points", points);
-    // }
-    // else{
-        // document.getElementById("quiz_body").style.backgroundColor="red";
-        // alert("incorrect answer");
-        // }
+    console.log(question_count);   
     console.log(points);
-  
     question_count++;
     show(question_count);
   }
@@ -172,7 +152,7 @@ let questions = [
 
   function previous() {
     console.log(question_count);
-    question_count--;
+    question_count-=1;
     show(question_count);
   }
 let cnt=0;
@@ -182,7 +162,7 @@ let cnt=0;
     let question = document.getElementById("questions");
     let [first, second, third, fourth] =(questions[count].options);
     question.innerHTML = `
-    <h2>Q${cnt + 1}. ${questions[count].question}</h2>
+    <h2>Q${count + 1}. ${questions[count].question}</h2>
      <ul class="option_group">
     <li class="option">${first}</li>
     <li class="option">${second}</li>
@@ -191,7 +171,11 @@ let cnt=0;
   </ul> 
     `;
     // i++;
-    cnt++;
+    if(questions[count].status=='1')
+    document.getElementById("submit1").style.visibility="hidden";
+    else 
+    document.getElementById("submit1").style.visibility="visible";
+    count++;
     toggleActive();
   }
   // function submt(){
@@ -256,81 +240,82 @@ let cnt=0;
                 sessionStorage.setItem("wquestion",wquestion);
       //         //  next();
              }
+             questions[question_count].status='1';
       //        next();
       //     }
 
   }
   // }
-  // function bclk(numberq)
-  // {
-  //   // alert(numberq);
-  //   if(numberq=='one'){
-  //   question_count=0;
-  //   cnt=0;
-  //   show(question_count);
-  //   }
-  //   else if(numberq=='two'){
-  //     question_count=1;
-  //     cnt=1;
-  //   show(question_count);
-  //   }
-  //   else if(numberq=='three'){
-  //     question_count=2;
-  //     cnt=2;
-  //   show(question_count);
+  function bclk(numberq)
+  {
+    // alert(numberq);
+    if(numberq=='one'){
+    question_count=0;
+    cnt=0;
+    show(question_count);
+    }
+    else if(numberq=='two'){
+      question_count=1;
+      cnt=1;
+    show(question_count);
+    }
+    else if(numberq=='three'){
+      question_count=2;
+      cnt=2;
+    show(question_count);
     
-  // }
-  //   else if(numberq=='four'){
-  //     question_count=3;
-  //     cnt=3;
-  //   show(question_count);
-  // }
-  //   else if(numberq=='five'){
-  //     question_count=4;
-  //     cnt=4;
-  //   show(question_count);
-  // }
-  //   else if(numberq=='six'){
-  //     question_count=5;
-  //     cnt=5;
-  //   show(question_count);
-  // }
-  //   else if(numberq=='seven'){
-  //     question_count=6;
-  //     cnt=6;
-  //   show(question_count);
-  // }
-  //   else if(numberq=='eight'){
-  //     question_count=7;
-  //     cnt=7;
-  //   show(question_count);
-  // }
-  //   else if(numberq=='nine'){
-  //     question_count=8;
-  //     cnt=8;
-  //   show(question_count);
-  // }
-  //   else if(numberq=='ten'){
-  //     question_count=9;
-  //     cnt=9;
-  //   show(question_count);
-  // }
+  }
+    else if(numberq=='four'){
+      question_count=3;
+      cnt=3;
+    show(question_count);
+  }
+    else if(numberq=='five'){
+      question_count=4;
+      cnt=4;
+    show(question_count);
+  }
+    else if(numberq=='six'){
+      question_count=5;
+      cnt=5;
+    show(question_count);
+  }
+    else if(numberq=='seven'){
+      question_count=6;
+      cnt=6;
+    show(question_count);
+  }
+    else if(numberq=='eight'){
+      question_count=7;
+      cnt=7;
+    show(question_count);
+  }
+    else if(numberq=='nine'){
+      question_count=8;
+      cnt=8;
+    show(question_count);
+  }
+    else if(numberq=='ten'){
+      question_count=9;
+      cnt=9;
+    show(question_count);
+  }
 
-  //   // alert(i);
-  // //   if(numberq=='one'){
-  // //   i=0;
-  // //   }
-  // //   let question = document.getElementById("questions");
-  // //   let [first, second, third, fourth] =(questions[count].options);
-  // //   question.innerHTML = `
-  // //   <h2>Q${count + 1}. ${questions[arr[i]-1].question}</h2>
-  // //    <ul class="option_group">
-  // //   <li class="option">${first}</li>
-  // //   <li class="option">${second}</li>
-  // //   <li class="option">${third}</li>
-  // //   <li class="option">${fourth}</li>
-  // // </ul> 
-  // // //   `;
-  // //   i++;
-  //   // toggleActive();
-  // }
+    // alert(i);
+  //   if(numberq=='one'){
+  //   i=0;
+  //   }
+  //   let question = document.getElementById("questions");
+  //   let [first, second, third, fourth] =(questions[count].options);
+  //   question.innerHTML = `
+  //   <h2>Q${count + 1}. ${questions[arr[i]-1].question}</h2>
+  //    <ul class="option_group">
+  //   <li class="option">${first}</li>
+  //   <li class="option">${second}</li>
+  //   <li class="option">${third}</li>
+  //   <li class="option">${fourth}</li>
+  // </ul> 
+  // //   `;
+  //   i++;
+    // toggleActive();
+  }
